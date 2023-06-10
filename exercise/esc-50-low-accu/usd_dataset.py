@@ -120,31 +120,31 @@ class UrbanSoundDataset(Dataset):
 
 
 
-    def _get_audio_sample_path(self, index):
-        """
-        1) folders of the audio file
-        """
-        fold = f"fold{self.annotations.iloc[index, 5]}"  # folder is at the index = 5
-        path = os.path.join(
-            self.audio_dir, fold, self.annotations.iloc[index, 0]
-        )  # path col idx = 1
-        return path
-
-
     # def _get_audio_sample_path(self, index):
     #     """
     #     1) folders of the audio file
     #     """
-    #     # fold = f"fold{self.annotations.iloc[index, 5]}"  # folder is at the index = 5
+    #     fold = f"fold{self.annotations.iloc[index, 5]}"  # folder is at the index = 5
     #     path = os.path.join(
-    #         self.audio_dir, self.annotations.iloc[index, 0]
+    #         self.audio_dir, fold, self.annotations.iloc[index, 0]
     #     )  # path col idx = 1
     #     return path
 
 
+    def _get_audio_sample_path(self, index):
+        """
+        1) folders of the audio file
+        """
+        # fold = f"fold{self.annotations.iloc[index, 5]}"  # folder is at the index = 5
+        path = os.path.join(
+            self.audio_dir, self.annotations.iloc[index, 0]
+        )  # path col idx = 1
+        return path
+
+
 
     def _get_audio_sample_label(self, index):
-        return self.annotations.iloc[index, 6]  # label id at index = 6 for UrbanSoundDataset, 3 for esc-50
+        return self.annotations.iloc[index, 2]  # label id at index = 6 for UrbanSoundDataset, 2 for esc-50 (numeric)
 
 
 if __name__ == "__main__":
